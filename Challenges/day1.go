@@ -22,7 +22,6 @@ func part1() int {
 	currSonarDepth := 99999999
 	solution := 0
 	for _, line := range lines {
-		util.Check(err)
 		if line >= currSonarDepth {
 			solution++
 		}
