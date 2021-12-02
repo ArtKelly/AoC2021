@@ -6,7 +6,7 @@ import (
 	util "github.com/ArtKelly/AoC2021/Util"
 )
 
-func main() {
+func day1() {
 	part1 := part1()
 	fmt.Printf("Part 1: %d\n", part1)
 	part2 := part2()
