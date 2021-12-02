@@ -12,7 +12,7 @@ func Check(e error) {
 	}
 }
 
-func ReadLines(path string) ([]string, error) {
+func ReadLines(path string) []string {
 	file, err := os.Open(path)
 	Check(err)
 	defer file.Close()
@@ -22,7 +22,8 @@ func ReadLines(path string) ([]string, error) {
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
 	}
-	return lines, scanner.Err()
+	Check(scanner.Err())
+	return lines
 }
 
 func StringsArrayToInts(strings []string) ([]int, error) {

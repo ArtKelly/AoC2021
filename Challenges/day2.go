@@ -8,7 +8,7 @@ import (
 )
 
 func Day2() {
-	inputs, horizontal, depth := getInputsStrs(), 0, 0
+	inputs, horizontal, depth := util.ReadLines("Inputs/day2.txt"), 0, 0
 	for _, command := range inputs {
 		command, value := parseCommandString(command)
 		switch command {
@@ -22,7 +22,7 @@ func Day2() {
 	}
 	fmt.Printf("Part 1: %d\n", (depth * horizontal))
 
-	inputs, horizontal, depth, aim := getInputsStrs(), 0, 0, 0
+	horizontal, depth, aim := 0, 0, 0
 	for _, command := range inputs {
 		command, value := parseCommandString(command)
 		switch command {
@@ -36,12 +36,6 @@ func Day2() {
 		}
 	}
 	fmt.Printf("Part 2: %d\n", (depth * horizontal))
-}
-
-func getInputsStrs() []string {
-	inputs, err := util.ReadLines("Inputs/day2.txt")
-	util.Check(err)
-	return inputs
 }
 
 func parseCommandString(s string) (string, int) {
