@@ -38,3 +38,9 @@ func StringsArrayToInts(strings []string) ([]int, error) {
 
 	return ints, nil
 }
+
+func StringtoInt(s string) int {
+	value, err := strconv.Atoi(s)
+	Check(err)
+	return value
+}

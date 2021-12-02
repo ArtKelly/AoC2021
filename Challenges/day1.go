@@ -1,52 +1,37 @@
-package main
+package challenges
 
 import (
 	"fmt"
+	"math"
 
 	util "github.com/ArtKelly/AoC2021/Util"
 )
 
-func day1() {
-	part1 := part1()
-	fmt.Printf("Part 1: %d\n", part1)
-	part2 := part2()
-	fmt.Printf("Part 2: %d\n", part2)
-}
-
-func part1() int {
-	inputs, err := util.ReadLines("../Inputs/day1.txt")
-	util.Check(err)
-
-	lines, err := util.StringsArrayToInts(inputs)
-	util.Check(err)
-	currSonarDepth := 99999999
-	solution := 0
+func Day1() {
+	lines, currSonarDepth, part1Solution := getInputInts(), math.MaxInt, 0
 	for _, line := range lines {
 		if line >= currSonarDepth {
-			solution++
+			part1Solution++
 		}
 		currSonarDepth = line
 	}
-	return solution
-}
+	fmt.Printf("Part 1: %d\n", part1Solution)
 
-func part2() int {
-	// sliding window
-	inputs, err := util.ReadLines("../Inputs/day1.txt")
-	util.Check(err)
-
-	lines, err := util.StringsArrayToInts(inputs)
-	util.Check(err)
-
-	currSonarDepth := 99999999
-	solution := 0
-
+	lines, currSonarDepth, part2Solution := getInputInts(), math.MaxInt, 0
 	for i := 0; i < len(lines)-2; i++ {
 		sum := lines[i] + lines[i+1] + lines[i+2]
 		if sum > currSonarDepth {
-			solution++
+			part2Solution++
 		}
 		currSonarDepth = sum
 	}
-	return solution
+	fmt.Printf("Part 2: %d\n", part2Solution)
+}
+
+func getInputInts() []int {
+	inputs, err := util.ReadLines("Inputs/day1.txt")
+	util.Check(err)
+	lines, err := util.StringsArrayToInts(inputs)
+	util.Check(err)
+	return lines
 }

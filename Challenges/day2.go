@@ -1,59 +1,50 @@
-package main
+package challenges
 
 import (
 	"fmt"
-	"strconv"
 	"strings"
 
 	util "github.com/ArtKelly/AoC2021/Util"
 )
 
-func main() {
-	// words := strings.Fields(someString)
-	part1 := a()
-	fmt.Printf("Part 1: %d\n", part1)
-	part2 := b()
-	fmt.Printf("Part 2: %d\n", part2)
-}
-
-func a() int {
-	inputs, err := util.ReadLines("../Inputs/day2.txt")
-	util.Check(err)
-	forward := 0
-	down := 0
+func Day2() {
+	inputs, horizontal, depth := getInputsStrs(), 0, 0
 	for _, command := range inputs {
-		commands := strings.Fields(command)
-		value, err := strconv.Atoi(commands[1])
-		util.Check(err)
-		if commands[0] == "down" {
-			down += value
-		} else if commands[0] == "forward" {
-			forward += value
-		} else {
-			down -= value
+		command, value := parseCommandString(command)
+		switch command {
+		case "forward":
+			horizontal += value
+		case "down":
+			depth += value
+		case "up":
+			depth -= value
 		}
 	}
-	return down * forward
-}
+	fmt.Printf("Part 1: %d\n", (depth * horizontal))
 
-func b() int {
-	inputs, err := util.ReadLines("../Inputs/day2.txt")
-	util.Check(err)
-	horizontal := 0
-	depth := 0
-	aim := 0
+	inputs, horizontal, depth, aim := getInputsStrs(), 0, 0, 0
 	for _, command := range inputs {
-		commands := strings.Fields(command)
-		value, err := strconv.Atoi(commands[1])
-		util.Check(err)
-		if commands[0] == "down" {
-			aim += value
-		} else if commands[0] == "forward" {
+		command, value := parseCommandString(command)
+		switch command {
+		case "forward":
 			horizontal += value
 			depth += aim * value
-		} else {
+		case "down":
+			aim += value
+		case "up":
 			aim -= value
 		}
 	}
-	return depth * horizontal
+	fmt.Printf("Part 2: %d\n", (depth * horizontal))
+}
+
+func getInputsStrs() []string {
+	inputs, err := util.ReadLines("Inputs/day2.txt")
+	util.Check(err)
+	return inputs
+}
+
+func parseCommandString(s string) (string, int) {
+	commands := strings.Fields(s)
+	return commands[0], util.StringtoInt(commands[1])
 }
