@@ -7,8 +7,8 @@ import (
 	util "github.com/ArtKelly/AoC2021/Util"
 )
 
-func Day1() {
-	lines, currSonarDepth, part1Solution := getInputInts(), math.MaxInt, 0
+func Day1(filepath string) (int, int) {
+	lines, currSonarDepth, part1Solution := getInputInts(filepath), math.MaxInt, 0
 	for _, line := range lines {
 		if line >= currSonarDepth {
 			part1Solution++
@@ -26,10 +26,11 @@ func Day1() {
 		currSonarDepth = sum
 	}
 	fmt.Printf("Part 2: %d\n", part2Solution)
+	return part1Solution, part2Solution
 }
 
-func getInputInts() []int {
-	inputs := util.ReadLines("Inputs/day1.txt")
+func getInputInts(fp string) []int {
+	inputs := util.ReadLines(fp)
 	lines, err := util.StringsArrayToInts(inputs)
 	util.Check(err)
 	return lines
