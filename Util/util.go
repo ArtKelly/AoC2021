@@ -2,13 +2,14 @@ package util
 
 import (
 	"bufio"
+	"log"
 	"os"
 	"strconv"
 )
 
 func Check(e error) {
 	if e != nil {
-		panic(e)
+		log.Fatal(e)
 	}
 }
 
