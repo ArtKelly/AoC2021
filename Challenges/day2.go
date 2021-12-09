@@ -2,6 +2,7 @@ package challenges
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 
 	util "github.com/ArtKelly/AoC2021/Util"
@@ -40,5 +41,6 @@ func Day2() {
 
 func parseCommandString(s string) (string, int) {
 	commands := strings.Fields(s)
-	return commands[0], util.StringtoInt(commands[1])
+	i, _ := strconv.Atoi(commands[1])
+	return commands[0], i
 }

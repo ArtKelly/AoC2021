@@ -6,6 +6,7 @@ import (
 	util "github.com/ArtKelly/AoC2021/Util"
 )
 
+// TODO: This is bad, pls fix in future
 func Day5(filepath string) {
 	lines := util.ReadLines(filepath)
 	var seaFloor [1000][1000]int
