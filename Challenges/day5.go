@@ -7,6 +7,7 @@ import (
 )
 
 // TODO: This is bad, pls fix in future
+// Use https://go.dev/blog/maps
 func Day5(filepath string) {
 	lines := util.ReadLines(filepath)
 	var seaFloor [1000][1000]int
